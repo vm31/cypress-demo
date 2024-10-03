@@ -1,10 +1,18 @@
 export class HomePage {
-    visit(){
-        cy.visit('https://example.cypress.io/');
-    }
-    click(){
-        cy.click();
-    }
+    acceptCoockieBtn = '.ch2-dialog-actions > .ch2-allow-all-btn';
+    menuIcon = '.nav-main-toggle';
+    signInBtn  = '.nav-item-login > .btn';
 
-   
+    visit(){
+        cy.visit('https://swagger.io/');
+    }
+     acceptAllCoockies(){
+        cy.get(this.acceptCoockieBtn).click();
+     }
+     clickMenuIcon(){
+        cy.get(this.menuIcon).click();
+     }
+     clickSignIn(){
+        cy.get(this.signInBtn).click();
+     }
 }
