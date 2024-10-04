@@ -6,5 +6,5 @@ export class SignInPage {
         cy.get(this.emailInputBox)
         .should('be.visible')
         .type(email);
-    }    
+    }
 }
