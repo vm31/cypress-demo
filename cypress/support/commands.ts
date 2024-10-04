@@ -2,13 +2,14 @@
 
 // Custom command to log in via API
 
-Cypress.Commands.add('login', (email: string, password: string) => {
+Cypress.Commands.add('login', (stateValue: string, email: string, password: string) => {
     
     cy.request({
         method: 'POST',
         url: 'https://auth.id.smartbear.com',
         body: {
             user: {
+                state: stateValue,
                 email: email,
                 password: password
             }
@@ -28,7 +29,7 @@ declare global {
        * Custom command to log in
        * @example cy.login('email@example.com', 'password')
        */
-      login(email: string, password: string): Chainable<void>;
+      login(stateValue:string, email: string, password: string): Chainable<void>;
     }
   }
 }
