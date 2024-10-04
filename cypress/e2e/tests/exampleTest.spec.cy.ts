@@ -6,6 +6,7 @@ describe('Home Page tests',() => {
     const homePage = new HomePage();
     const signInPage = new SignInPage();
     let dynamicUrl:any;
+    let stateId:any;
 
     beforeEach(()=>{
         homePage.visit();
@@ -17,8 +18,11 @@ describe('Home Page tests',() => {
 
         cy.origin('https://auth.id.smartbear.com', () => {
             cy.url().then(url => {
-                dynamicUrl = url
+                dynamicUrl = url;
+                cy.log('******************dynamicurl is',dynamicUrl);
+                cy.log('________________',dynamicUrl.split('/').slice(3));
               });
+         
             cy.then(() => cy.visit(dynamicUrl));
             cy.get('#username').should('be.visible').type("abcd@abcd.com").click();
             //signInPage.enterEmail('vmiddela@gmail.com');
