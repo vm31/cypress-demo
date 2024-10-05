@@ -11,11 +11,9 @@ Cypress.Commands.add("loginViaUi", (email: string) => {
       cy.then(() => cy.visit(dynamicUrl));
       cy.get("#username").type(email);
       cy.contains("Continue").click();
-      cy.get('#password').should('be.visible').click().type('Abcd_1234');
-      cy.get('.ca0df71c7 > .ccfd14389').click();
-   
+      cy.get("#password").should("be.visible").click().type("Abcd_1234");
+      cy.get(".ca0df71c7 > .ccfd14389").click();
     }
-
   );
 });
 
@@ -61,7 +59,6 @@ Cypress.Commands.add(
     });
   }
 );
-
 
 // Extend Cypress Chainable interface for TypeScript support
 declare global {
