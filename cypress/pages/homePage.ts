@@ -4,15 +4,15 @@ export class HomePage {
     signInBtn  = '.nav-item-login > .btn';
 
     visit(){
-        cy.visit('/home');
+        cy.visit('/');
     }
-   //   acceptAllCoockies(){
-   //      cy.get(this.acceptCoockieBtn).click();
-   //   }
-   //   clickMenuIcon(){
-   //      cy.get(this.menuIcon).click();
-   //   }
+     acceptAllCoockies(){
+        cy.get(this.acceptCoockieBtn).click();
+     }
+     clickMenuIcon(){
+        cy.get(this.menuIcon).click();
+     }
      clickSignIn(){
-        cy.contains('Log In').click();
+        cy.contains('Sign In').click();
      }
 }

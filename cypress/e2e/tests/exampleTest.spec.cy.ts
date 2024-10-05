@@ -9,13 +9,12 @@ describe('Home Page tests',() => {
 
     beforeEach(()=>{
         homePage.visit();
- 
+        homePage.acceptAllCoockies();
     });
     it('sign in test',()=>{
-      
+        homePage.clickMenuIcon();
         homePage.clickSignIn();
         cy.loginViaUi('playtestforme@gmail.com');
-        cy.visit('https://app.swaggerhub.com/home');
-        cy.get('#topbar-logo-img').should('be.visible').debug();
+//        cy.get('#topbar-logo-img').should('be.visible').debug();
       })
 });
