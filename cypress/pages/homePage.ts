@@ -4,15 +4,15 @@ export class HomePage {
     signInBtn  = '.nav-item-login > .btn';
 
     visit(){
-        cy.visit('https://swagger.io/');
+        cy.visit('/home');
     }
-     acceptAllCoockies(){
-        cy.get(this.acceptCoockieBtn).click();
-     }
-     clickMenuIcon(){
-        cy.get(this.menuIcon).click();
-     }
+   //   acceptAllCoockies(){
+   //      cy.get(this.acceptCoockieBtn).click();
+   //   }
+   //   clickMenuIcon(){
+   //      cy.get(this.menuIcon).click();
+   //   }
      clickSignIn(){
-        cy.get(this.signInBtn).click();
+        cy.contains('Log In').click();
      }
 }
