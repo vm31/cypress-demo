@@ -1,6 +1,4 @@
-// cypress/plugins/index.ts
 
-/// <reference types="cypress" />
 import './commands';
     
 

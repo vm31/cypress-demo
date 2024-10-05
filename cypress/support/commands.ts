@@ -1,35 +1,43 @@
-    // cypress/support/commands.ts
+// cypress/support/commands.ts
 
-// Custom command to log in via API
+Cypress.Commands.add('loginViaUi', ( email: string) => {
+    
+      cy.get('#username').type(email)
+      cy.contains('continue').click();
+  })
+
 
 Cypress.Commands.add('login', (stateValue: string, email: string, password: string) => {
-    
-    cy.request({
-        method: 'POST',
-        url: 'https://auth.id.smartbear.com',
-        body: {
-            user: {
-                state: stateValue,
-                email: email,
-                password: password
-            }
-        }
-    })
-    .then((resp) => {
-        // Assuming the JWT is in resp.body.user.token, adjust if needed
-        window.localStorage.setItem('jwt', resp.body.user.token);
-    });
+  cy.request({
+    method: 'POST',
+    url: 'https://auth.id.smartbear.com/api/login', // Ensure this is the correct URL for login
+    headers: {
+      
+    },
+    body: {
+      state: stateValue,
+      username: email,
+      password: password
+    },
+    failOnStatusCode: false  // Optional: Handle failures manually
+  })
+  .then((resp) => {
+    // Assuming JWT token is in resp.body.token
+    if (resp.status === 200 && resp.body.token) {
+      window.localStorage.setItem('jwt', resp.body.token);
+      cy.log('JWT token stored');
+    } else {
+      throw new Error('Login failed');
+    }
+  });
 });
 
-// Extend Cypress Chainable interface for TypeScript
+// Extend Cypress Chainable interface for TypeScript support
 declare global {
   namespace Cypress {
     interface Chainable {
-      /**
-       * Custom command to log in
-       * @example cy.login('email@example.com', 'password')
-       */
-      login(stateValue:string, email: string, password: string): Chainable<void>;
+      loginViaUi(email: string): Chainable<void>;
+      login(stateValue: string, email: string, password: string): Chainable<void>;
     }
   }
 }

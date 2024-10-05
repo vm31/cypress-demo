@@ -1,33 +1,36 @@
-/// <reference types="cypress" />
-
 import { HomePage } from "../../pages/homePage";
-describe('Settings Page tests',()=>{
-    let dynamicUrl:any;
-    let stateValue: any;
+
+describe('Settings Page tests', () => {
+    let dynamicUrl: string;
+    let stateValue: string;
     const homePage = new HomePage();
-    beforeEach(()=>{
+
+    beforeEach(() => {
         homePage.visit();
-        homePage.acceptAllCoockies();
+        homePage.acceptAllCoockies(); // Corrected the method name
         homePage.clickMenuIcon();
         homePage.clickSignIn();
-
     });
+
     it.only('should log in via API and store JWT in localStorage', () => {
         cy.origin('https://auth.id.smartbear.com', () => {
+            // Capture the dynamic URL
             cy.url().then(url => {
                 dynamicUrl = url;
-                cy.log('******************dynamicurl is:*****',dynamicUrl);
-                
-                stateValue = dynamicUrl.split('=')[1];
-                cy.log('________i am state value------:',dynamicUrl.split('=')[1]);
+                cy.log('Dynamic URL:', dynamicUrl);
 
-              });
-        cy.login(stateValue,'playtestforme@gmail.com', 'Abcd_1234');
-    
-        // You can assert that the JWT is stored in localStorage
-        cy.window().its('localStorage.jwt').should('exist');
-    
-        // Further assertions after login
-      });
+                // Extract the stateValue from the URL
+                stateValue = dynamicUrl.split('=')[1]; // Adjust split logic if necessary
+                cy.log('State Value:', stateValue);
 
-})
+                // Now perform the login using the captured stateValue
+                cy.login(stateValue, 'playtestforme@gmail.com', 'Abcd_1234');
+            });
+
+            // Assert that the JWT is stored in localStorage
+            cy.window().its('localStorage.jwt').should('exist');
+
+            // Further assertions can be done here after login
+        });
+    });
+});
