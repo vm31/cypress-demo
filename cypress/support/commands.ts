@@ -13,15 +13,15 @@ Cypress.Commands.add("loginViaUi", (email: string, password: string) => {
         dynamicUrl = url;
       });
       cy.then(() => cy.visit(dynamicUrl));
-      // cy.get("#username").type(email);
-      // cy.contains("Continue").click();
-      // cy.get("#password").should("be.visible").click().type(password);
-      // cy.get(".ca0df71c7 > .ccfd14389").click();
-      const signInPageObj = new SignInPage();
-      signInPageObj.enterEmail(email);
-      signInPageObj.clickContinueBtn();
-      signInPageObj.enterPassword(password);
-      signInPageObj.clickpasswordContinueBtn();
+      cy.get("#username").type(email);
+      cy.contains("Continue").click();
+      cy.get("#password").should("be.visible").click().type(password);
+      cy.get(".ca0df71c7 > .ccfd14389").click();
+      // const signInPageObj = new SignInPage();
+      // signInPageObj.enterEmail(email);
+      // signInPageObj.clickContinueBtn();
+      // signInPageObj.enterPassword(password);
+      // signInPageObj.clickpasswordContinueBtn();
 
     }
   );
