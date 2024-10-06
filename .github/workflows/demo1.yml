@@ -9,6 +9,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: List all directories and files
+        run: ls -R
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
@@ -20,8 +23,8 @@ jobs:
 
       - name: Install Cypress
         run: npm install cypress --save-dev
-        working-directory: ./cypress-demo  # Again, pointing to the folder where Cypress is configured
+        working-directory: ./cypress-demo  # Install Cypress from the same directory
 
       - name: Run Cypress Tests
         run: npm run e2e:chrome
-        working-directory: ./cypress-demo  # Run Cypress tests from the correct directory
+        working-directory: ./cypress-demo  # Run tests from the same directory
