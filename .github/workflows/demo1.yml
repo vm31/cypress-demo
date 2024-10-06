@@ -1,40 +1,27 @@
-name: run-tests
-'on':
-  push: null
+name: Cypress Test
+
+on:
+  push:
 jobs:
-  install-cypress-job:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+
       - name: Install dependencies
         run: npm install
-        working-directory: ./cypress-demo  # Running npm install one directory up
+        working-directory: ./cypress-demo  # Pointing to the correct location where package.json is located
 
-      - name: Cypress install
-        uses: cypress-io/github-action@v6
-        with:
-          runTests: false
-          build: npm run build
-      - name: Save build folder
-        uses: actions/upload-artifact@v4
-        with:
-          name: build
-          if-no-files-found: error
-          path: build
-  cypress-run:
-    runs-on: ubuntu-latest
-    needs: install-cypress-job
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Download the build folder
-        uses: actions/download-artifact@v4
-        with:
-          name: build
-          path: build
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
-        with:
-          start: npm start
-          browser: chrome
+      - name: Install Cypress
+        run: npm install cypress --save-dev
+        working-directory: ./cypress-demo  # Again, pointing to the folder where Cypress is configured
+
+      - name: Run Cypress Tests
+        run: npm run e2e:chrome
+        working-directory: ./cypress-demo  # Run Cypress tests from the correct directory
