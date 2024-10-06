@@ -17,11 +17,19 @@ jobs:
         with:
           node-version: '18.x'
 
+      - name: Cache Cypress binary
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/Cypress
+          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-cypress-
+
       - name: Install dependencies
         run: npm install
 
-      - name: Install Cypress
-        run: npm install cypress --save-dev
+      - name: Install Cypress Binary
+        run: npx cypress install  # Ensures the binary is installed
 
       - name: Run Cypress Tests
         run: npm run e2e:chrome
