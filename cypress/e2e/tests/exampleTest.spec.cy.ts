@@ -17,7 +17,7 @@ describe("Home Page tests", () => {
     cy.loginViaUi("playtestforme@gmail.com");
     cy.origin('https://app.swaggerhub.com', () => {
         cy.location('pathname', {timeout: 60000}).should('include', '/home');
-        cy.get('.topbar-logo-img').should('be.visible').debug();
+        cy.get('#headlessui-menu-button-\\:rh\\:').should('be.visible');
       })
   });
 });
