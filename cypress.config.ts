@@ -3,6 +3,7 @@ import { defineConfig } from 'cypress';
 
 export default defineConfig({
   e2e: {
+    baseUrl: "https://swagger.io",
     fixturesFolder: 'cypress/fixtures', // Path to fixtures folder
     supportFile: 'cypress/support/index.ts', // Path to support file
     specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx}', // Pattern for test files in the e2e folder
