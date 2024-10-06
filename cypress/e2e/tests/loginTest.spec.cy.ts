@@ -15,7 +15,6 @@ describe("Home Page tests", () => {
   });
 
   it.skip("sign in test", function() {
-    // Access valid user from fixture data
     const { validUser } = this.loginData;
 
     homePage.clickMenuIcon();
@@ -24,7 +23,6 @@ describe("Home Page tests", () => {
 
     cy.loginViaUi(validUser.email, validUser.password);
 
-    // Handle origin change for cross-origin interactions
     cy.origin('https://app.swaggerhub.com', () => {
 
     cy.location('pathname', { timeout: 60000 }).should('include', '/home');

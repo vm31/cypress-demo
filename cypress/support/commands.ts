@@ -63,10 +63,10 @@ Cypress.Commands.add(
     });
   }
 );
-Cypress.Commands.add("firstBackendCall", () => {
+Cypress.Commands.add("firstBackendCall", (requestUrl:string) => {
   cy.request({
     method: "GET",
-    url: 'https://virtserver.swaggerhub.com/playtestforme/test/1.0.0/devices'
+    url: requestUrl
   }).then((resp) => {
     // Check for success
     if (resp.status === 200) {
@@ -83,7 +83,7 @@ Cypress.Commands.add("firstBackendCall", () => {
 declare global {
   namespace Cypress {
     interface Chainable {
-      firstBackendCall():Chainable<void>;
+      firstBackendCall(requestUrl:string):Chainable<void>;
       loginViaUi(email: string, password: string): Chainable<void>;
       login(
         stateValue: string,
