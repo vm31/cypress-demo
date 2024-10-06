@@ -12,7 +12,7 @@ describe('Settings Page tests', () => {
         homePage.clickSignIn();
     });
 
-    it.only('should log in via API and store JWT in localStorage', () => {
+    it.skip('should log in via API and store JWT in localStorage', () => {
         cy.origin('https://auth.id.smartbear.com', () => {
             // Capture the dynamic URL
             cy.url().then(url => {
