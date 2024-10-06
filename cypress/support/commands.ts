@@ -17,12 +17,6 @@ Cypress.Commands.add("loginViaUi", (email: string, password: string) => {
       cy.contains("Continue").click();
       cy.get("#password").should("be.visible").click().type(password);
       cy.get(".ca0df71c7 > .ccfd14389").click();
-      // const signInPageObj = new SignInPage();
-      // signInPageObj.enterEmail(email);
-      // signInPageObj.clickContinueBtn();
-      // signInPageObj.enterPassword(password);
-      // signInPageObj.clickpasswordContinueBtn();
-
     }
   );
 });
@@ -69,11 +63,27 @@ Cypress.Commands.add(
     });
   }
 );
+Cypress.Commands.add("firstBackendCall", () => {
+  cy.request({
+    method: "GET",
+    url: 'https://virtserver.swaggerhub.com/playtestforme/test/1.0.0/devices'
+  }).then((resp) => {
+    // Check for success
+    if (resp.status === 200) {
+      cy.log("Request successful");
+      // You can handle the response here (e.g., assert on response data or use it in your tests)
+    } else {
+      throw new Error("Get devices request failed");
+    }
+  });
+});
+
 
 // Extend Cypress Chainable interface for TypeScript support
 declare global {
   namespace Cypress {
     interface Chainable {
+      firstBackendCall():Chainable<void>;
       loginViaUi(email: string, password: string): Chainable<void>;
       login(
         stateValue: string,
