@@ -1,12 +1,17 @@
 name: hello-world
-'on': push
+on: 
+  push:
 jobs:
   my-job:
     runs-on: ubuntu-latest
     steps:
       - name: my-step
         run: echo "Hello World!"
-      - name: use node.js
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: 18.x
-        run: 'npm run e2e:chrome'
+          node-version: '18.x'
+      
+      - name: Run e2e tests on Chrome
+        run: npm run e2e:chrome
