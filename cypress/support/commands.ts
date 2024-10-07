@@ -13,6 +13,8 @@ Cypress.Commands.add("loginViaUi", (email: string, password: string) => {
         dynamicUrl = url;
       });
       cy.then(() => cy.visit(dynamicUrl));
+      cy.get('#username').should('be.visible');
+
       cy.get("#username").type(email);
       cy.contains("Continue").click();
       cy.get("#password").should("be.visible").click().type(password);
