@@ -1,14 +1,19 @@
-describe("Home Page tests", () => {
+// Define a custom type for the response body (optional)
+type BackendData = {
+  data: {
+    id: number;
+    name: string;
+    // other fields in the response
+  };
+};
 
-    // Load fixture before each test
-    beforeEach(function() {
-      cy.fixture('api').as('api');  // Load 'api' fixture and alias it as 'api'
-    });
-  
-    // Test case using the loaded fixture data
-    it.only('my backend cypress test', function() {
-      const { api } = this.api;  // Access 'api' data from fixture
-      cy.firstBackendCall(api.url);  // Call your custom command and pass 'api' data
+describe('Backend Data Test', () => {
+  it('should successfully fetch backend data and assert status', () => {
+    cy.firstBackendCall('').then((response: Cypress.Response<BackendData>) => {
+      // Perform assertions on the response
+      expect(response.status).to.eq(200);  // Assert the response status
+      expect(response.body).to.have.property('data');  // Assert response body content
+      console.log('Response body is:',response.body)
     });
   });
-  
+});

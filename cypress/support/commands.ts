@@ -21,24 +21,6 @@ Cypress.Commands.add("loginViaUi", (email: string, password: string) => {
   );
 });
 
-// Cypress.Commands.add("login", (userId, password) => {
-//   cy.origin("https://some-sso.page",
-//     { args: { userId, password } },             // variables passed in
-//     ({ userId, password }) => {                 // inside, unwrapped (destructured)
-
-//       cy.wrap(userId).should("eq", "someUser"); // passes
-
-//       cy.get('input[placeholder="UserID"]').type(userId);
-//       cy.get('input[placeholder="Password"]').type(password);
-//       cy.contains("SIGN IN").click();
-//     }
-//   );
-// });
-// Cypress.Commands.add( "waitForElementVisibility",
-//   ()=>{
-
-//   }
-// )
 Cypress.Commands.add(
   "login",
   (stateValue: string, email: string, password: string) => {
@@ -66,16 +48,8 @@ Cypress.Commands.add(
 Cypress.Commands.add("firstBackendCall", (requestUrl:string) => {
   cy.request({
     method: "GET",
-    url: requestUrl
-  }).then((resp) => {
-    // Check for success
-    if (resp.status === 200) {
-      cy.log("Request successful");
-      // You can handle the response here (e.g., assert on response data or use it in your tests)
-    } else {
-      throw new Error("Get devices request failed");
-    }
-  });
+    url: requestUrl,
+  })
 });
 
 
@@ -83,7 +57,7 @@ Cypress.Commands.add("firstBackendCall", (requestUrl:string) => {
 declare global {
   namespace Cypress {
     interface Chainable {
-      firstBackendCall(requestUrl:string):Chainable<void>;
+      firstBackendCall(requestUrl:string):Chainable<Cypress.Response<any>>
       loginViaUi(email: string, password: string): Chainable<void>;
       login(
         stateValue: string,
