@@ -12,13 +12,15 @@ export class SignInPage {
     enterPassword(password:string){
         cy.get(this.passwordInputBox)
         .should("be.visible")
-        .click()
+        .click() // will fail if removed
         .type(password);
     }
     clickContinueBtn(){
         cy.contains("Continue").click();
     }
     clickpasswordContinueBtn(){
-        cy.get(this.continuePasswordBtn).click();
+        cy.get(this.continuePasswordBtn)
+        .should('be.visible')
+        .click();
     }
 }

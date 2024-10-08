@@ -4,7 +4,7 @@ describe("Home Page tests", () => {
       cy.fixture('api').as('api');
     });
   
-    it.only('get devices', function() {
+    it('get devices', function() {
       const { api } = this.api;
       cy.iGet(api.url).then((response)=>{
         expect(response.status).to.eq(200);
