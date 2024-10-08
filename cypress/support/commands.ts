@@ -14,7 +14,6 @@ Cypress.Commands.add("loginViaUi", (email: string, password: string) => {
       });
       cy.then(() => cy.visit(dynamicUrl));
       cy.get('#username').should('be.visible');
-
       cy.get("#username").type(email);
       cy.contains("Continue").click();
       cy.get("#password").should("be.visible").click().type(password);
@@ -23,48 +22,6 @@ Cypress.Commands.add("loginViaUi", (email: string, password: string) => {
   );
 });
 
-// Cypress.Commands.add("login", (userId, password) => {
-//   cy.origin("https://some-sso.page",
-//     { args: { userId, password } },             // variables passed in
-//     ({ userId, password }) => {                 // inside, unwrapped (destructured)
-
-//       cy.wrap(userId).should("eq", "someUser"); // passes
-
-//       cy.get('input[placeholder="UserID"]').type(userId);
-//       cy.get('input[placeholder="Password"]').type(password);
-//       cy.contains("SIGN IN").click();
-//     }
-//   );
-// });
-// Cypress.Commands.add( "waitForElementVisibility",
-//   ()=>{
-
-//   }
-// )
-Cypress.Commands.add(
-  "login",
-  (stateValue: string, email: string, password: string) => {
-    cy.request({
-      method: "POST",
-      url: "https://auth.id.smartbear.com/api/login", // Ensure this is the correct URL for login
-      headers: {},
-      body: {
-        state: stateValue,
-        username: email,
-        password: password,
-      },
-      failOnStatusCode: false, // Optional: Handle failures manually
-    }).then((resp) => {
-      // Assuming JWT token is in resp.body.token
-      if (resp.status === 200 && resp.body.token) {
-        window.localStorage.setItem("jwt", resp.body.token);
-        cy.log("JWT token stored");
-      } else {
-        throw new Error("Login failed");
-      }
-    });
-  }
-);
 Cypress.Commands.add("firstBackendCall", (requestUrl:string) => {
   cy.request({
     method: "GET",
@@ -73,7 +30,6 @@ Cypress.Commands.add("firstBackendCall", (requestUrl:string) => {
     // Check for success
     if (resp.status === 200) {
       cy.log("Request successful");
-      // You can handle the response here (e.g., assert on response data or use it in your tests)
     } else {
       throw new Error("Get devices request failed");
     }
