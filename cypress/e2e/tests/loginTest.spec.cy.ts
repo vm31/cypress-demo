@@ -14,7 +14,7 @@ describe("Home Page tests", () => {
     homePage.acceptAllCoockies();
   });
 
-  it.skip("sign in test", function() {
+  it("sign in test", function() {
     const { validUser } = this.loginData;
 
     homePage.clickMenuIcon();

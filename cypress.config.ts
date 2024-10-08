@@ -2,8 +2,6 @@
 import { defineConfig } from 'cypress';
 
 export default defineConfig({
-  viewportWidth: 1280,
-  viewportHeight: 1280,
   e2e: {
     baseUrl: "https://swagger.io",
     fixturesFolder: 'cypress/fixtures', // Path to fixtures folder
