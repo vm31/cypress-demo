@@ -8,28 +8,18 @@ describe("Home Page tests", () => {
 
   beforeEach(function() {
     cy.fixture('loginData').as('loginData');
-
     homePage.visit();
-
     homePage.acceptAllCoockies();
   });
 
   it("sign in test", function() {
     const { validUser } = this.loginData;
-
     homePage.clickMenuIcon();
-
     homePage.clickSignIn();
-
     cy.loginViaUi(validUser.email, validUser.password);
-
     cy.origin('https://app.swaggerhub.com', () => {
-
-    cy.location('pathname', { timeout: 60000 }).should('include', '/home');
-
+    cy.location('pathname').should('include', '/home');
     cy.get('#headlessui-menu-button-\\:rh\\:').should('be.visible');
     });
   });
-
-
 });

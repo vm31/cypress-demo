@@ -15,4 +15,5 @@ export class HomePage {
      clickSignIn(){
         cy.contains('Sign In').click();
      }
+   
 }
