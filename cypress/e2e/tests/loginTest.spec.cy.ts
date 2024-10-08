@@ -14,6 +14,12 @@ describe("Home Page tests", () => {
     homePage.acceptAllCoockies();
   });
 
+  it('will fail', function(){
+    cy.contains("swagger").should('not.exist')
+
+
+  });
+
   it("sign in test", function() {
     const { validUser } = this.loginData;
 
