@@ -22,17 +22,22 @@ Cypress.Commands.add("loginViaUi", (email: string, password: string) => {
   );
 });
 
-Cypress.Commands.add("firstBackendCall", (requestUrl:string) => {
-  cy.request({
-    method: "GET",
-    url: requestUrl
-  }).then((resp) => {
-    // Check for success
-    if (resp.status === 200) {
-      cy.log("Request successful");
-    } else {
-      throw new Error("Get devices request failed");
-    }
+// Cypress.Commands.add("getDevices", (requestUrl:string) => {
+//   cy.request({
+//     method: "GET",
+//     url: requestUrl
+//   }).then((resp) => {
+//     if (resp.status === 200) {
+//       cy.log("Request successful");
+//     } else {
+//       throw new Error("Get devices request failed");
+//     }
+//   });
+// });
+Cypress.Commands.add('iGet', (apiUrl: string) => {
+  cy.request('GET', apiUrl).then((response) => {
+    // Return the response to be used in the test
+    return response;
   });
 });
 
@@ -41,7 +46,8 @@ Cypress.Commands.add("firstBackendCall", (requestUrl:string) => {
 declare global {
   namespace Cypress {
     interface Chainable {
-      firstBackendCall(requestUrl:string):Chainable<void>;
+      iGet(apiUrl: string): Chainable<Response<any>>;
+      getDevices(requestUrl:string):Chainable<void>;
       loginViaUi(email: string, password: string): Chainable<void>;
       login(
         stateValue: string,

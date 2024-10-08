@@ -4,9 +4,12 @@ describe("Home Page tests", () => {
       cy.fixture('api').as('api');
     });
   
-    it.only('my backend cypress test', function() {
+    it.only('get devices', function() {
       const { api } = this.api;
-      cy.firstBackendCall(api.url);
+      cy.iGet(api.url).then((response)=>{
+        expect(response.status).to.eq(200);
+        expect(response.body).to.include('http://10.0.0.225:8080')
+      })
     });
   });
   
