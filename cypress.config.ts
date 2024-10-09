@@ -2,7 +2,21 @@
 import { defineConfig } from 'cypress';
 
 export default defineConfig({
+  reporter: 'cypress-mochawesome-reporter',
+  reporterOptions: {
+    reportDir: 'cypress/reports',
+    overwrite: false,
+    html: true,
+    json: true,
+    charts: true,
+  },
+  viewportWidth: 1280,
+  viewportHeight: 1280,
   e2e: {
+    setupNodeEvents(on,config){
+      require('cypress-mochawesome-reporter/plugin')(on);
+      return config;
+    },
     baseUrl: "https://swagger.io",
     fixturesFolder: 'cypress/fixtures', // Path to fixtures folder
     supportFile: 'cypress/support/index.ts', // Path to support file

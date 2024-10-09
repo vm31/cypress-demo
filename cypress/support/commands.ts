@@ -3,7 +3,6 @@ import { SignInPage } from "../pages/signInPage";
 
 let dynamicUrl: any;
 
-
 Cypress.Commands.add("loginViaUi", (email: string, password: string) => {
   cy.origin(
     "https://auth.id.smartbear.com",
@@ -16,38 +15,24 @@ Cypress.Commands.add("loginViaUi", (email: string, password: string) => {
       cy.get('#username').should('be.visible');
       cy.get("#username").type(email);
       cy.contains("Continue").click();
+     cy.contains('Continue logging in');
       cy.get("#password").should("be.visible").click().type(password);
       cy.get(".ca0df71c7 > .ccfd14389").click();
     }
   );
 });
 
-// Cypress.Commands.add("getDevices", (requestUrl:string) => {
-//   cy.request({
-//     method: "GET",
-//     url: requestUrl
-//   }).then((resp) => {
-//     if (resp.status === 200) {
-//       cy.log("Request successful");
-//     } else {
-//       throw new Error("Get devices request failed");
-//     }
-//   });
-// });
 Cypress.Commands.add('iGet', (apiUrl: string) => {
   cy.request('GET', apiUrl).then((response) => {
-    // Return the response to be used in the test
     return response;
   });
 });
 
 
-// Extend Cypress Chainable interface for TypeScript support
 declare global {
   namespace Cypress {
     interface Chainable {
       iGet(apiUrl: string): Chainable<Response<any>>;
-      getDevices(requestUrl:string):Chainable<void>;
       loginViaUi(email: string, password: string): Chainable<void>;
       login(
         stateValue: string,

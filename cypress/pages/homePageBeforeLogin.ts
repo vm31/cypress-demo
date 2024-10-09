@@ -1,6 +1,6 @@
 export class HomePageBeforeLogin {
     acceptCoockieBtn = '.ch2-dialog-actions > .ch2-allow-all-btn';
-    menuIcon = '.nav-main-toggle';
+    menuIcon = '[class^=".nav-main-toggle"]';
     signInBtn  = '.nav-item-login > .btn';
 
     visit(){
