@@ -34,8 +34,3 @@ jobs:
       - name: Run Cypress Tests
         run: npm run e2e:chrome
       - task: PublishBuildArtifacts@1
-      - name: 'Publish Cypress Screenshot Files'
-        condition: failed()
-        inputs:
-        PathtoPublish: 'cypress/screenshots'
-         ArtifactName: 'screenshots'  
