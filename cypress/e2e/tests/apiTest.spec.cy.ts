@@ -5,8 +5,7 @@ describe("Home Page tests", () => {
     });
   
     it('get devices', function() {
-      const { api } = this.api;
-      cy.iGet(api.url).then((response)=>{
+      cy.iGet(this.api.devicesApi.url).then((response)=>{
         expect(response.status).to.eq(200);
         expect(response.body).to.include('http://10.0.0.225:8080')
       })
