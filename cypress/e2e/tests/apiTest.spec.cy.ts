@@ -17,7 +17,8 @@ describe("Home Page tests", () => {
     cy.addPetToStore(newPet).then((response) => {
       expect(response.status).to.eq(200);
       Cypress.env('addedPet',response.body);
-      cy.log('response from call',JSON.stringify(response.body));
+      console.log("RESPONSE BODY IS:",JSON.stringify(response.body));
+      expect(response.body).to.have.property('name', newPet.name)
     });
   });
 
@@ -26,10 +27,10 @@ describe("Home Page tests", () => {
     expect(addedPet).to.not.to.be.null;
     cy.log('Added pet is: ',JSON.stringify(addedPet));
     cy.getPetsByStatus(['available']).then((response) => {
-    console.log(JSON.stringify(response.body));
+    console.log("RESPONSE BODY IS:",JSON.stringify(response.body));
       expect(response.status).to.eq(200);
       const totalAvailablePets = response.body.filter((pet:Pet) => pet.status === "available");
-      const addedPetIsAvailable = totalAvailablePets.some((pet:Pet)=> pet.name === addedPet.name);
+      const addedPetIsAvailable = totalAvailablePets.some((pet:Pet) => pet.name === addedPet.name);
       expect(addedPetIsAvailable).to.be.true;
     });
   });
