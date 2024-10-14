@@ -1,2 +1,2 @@
-cypress\reports\*
+cypress/reports/*
 node_modules
