@@ -25,7 +25,6 @@ describe("Home Page tests", () => {
   it('get pets in store', function() {
     const addedPet = Cypress.env('addedPet');
     expect(addedPet).to.not.to.be.null;
-    cy.log('Added pet is: ',JSON.stringify(addedPet));
     cy.getPetsByStatus(['available']).then((response) => {
     console.log("RESPONSE BODY IS:",JSON.stringify(response.body));
       expect(response.status).to.eq(200);
