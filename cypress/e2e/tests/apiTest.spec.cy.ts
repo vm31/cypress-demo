@@ -9,7 +9,7 @@ describe("Home Page tests", () => {
     cy.fixture('api').as('api');
       const newPet:Pet = {
         name: "------I am a test pet--------",
-        status: "available",
+        status: "available"
       };
       cy.addPetToStore(newPet).then((response) => {
         expect(response.status).to.eq(200);
