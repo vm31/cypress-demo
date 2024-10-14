@@ -28,7 +28,7 @@ Cypress.Commands.add('iGet', (apiUrl: string) => {
   });
 });
 
-Cypress.Commands.add('getPetsSold', (statuses: string[]) => {
+Cypress.Commands.add('getPetsByStatus', (statuses: string[]) => {
   const apiUrl = `https://petstore.swagger.io/v2/pet/findByStatus?${statuses.map(status => `status=${status}`).join('&')}`;
     cy.request('GET', apiUrl).then((response) => {
     return response;
@@ -51,7 +51,7 @@ declare global {
   namespace Cypress {
     interface Chainable {
       addPetToStore(petData: { id?: number; name: string; status: string }): Chainable<Response<any>>;
-      getPetsSold(status:string[]):Chainable<Response<any>>;
+      getPetsByStatus(status:string[]):Chainable<Response<any>>;
       iGet(apiUrl: string): Chainable<Response<any>>;
       loginViaUi(email: string, password: string): Chainable<void>;
       login(

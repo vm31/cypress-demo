@@ -10,9 +10,8 @@ describe("Home Page tests", () => {
   });
 
   it('add new pet to store', function() {
-    // Create a pet object to add
     const newPet:Pet = {
-      name: "---------------------------",
+      name: "------I am a test pet--------",
       status: "available",
     };
     cy.addPetToStore(newPet).then((response) => {
@@ -23,17 +22,15 @@ describe("Home Page tests", () => {
   });
 
   it('get pets in store', function() {
-    cy.getPetsSold(['available']).then((response) => { // Changed 'pending' to 'available' to match the added pet
-      cy.log(JSON.stringify(response.body));
+    const addedPet = Cypress.env('addedPet');
+    expect(addedPet).to.not.to.be.null;
+    cy.log('Added pet is: ',JSON.stringify(addedPet));
+    cy.getPetsByStatus(['available']).then((response) => {
+    console.log(JSON.stringify(response.body));
       expect(response.status).to.eq(200);
-      expect(response.body).to.not.be.null; // Ensure the response body is not empty
-      const filteredPets = response.body.filter((pet:Pet) => {
-        return pet.status === "available"; // Modify this condition based on your requirement
-      });
-      cy.log('Filtered pets:', JSON.stringify(filteredPets));
-      filteredPets.forEach((pet:Pet) => {
-        expect(pet.status).to.eq("available"); // Ensure the status is "available"
-      })
+      const totalAvailablePets = response.body.filter((pet:Pet) => pet.status === "available");
+      const addedPetIsAvailable = totalAvailablePets.some((pet:Pet)=> pet.name === addedPet.name);
+      expect(addedPetIsAvailable).to.be.true;
     });
   });
 });
