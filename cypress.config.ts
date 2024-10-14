@@ -22,7 +22,7 @@ export default defineConfig({
     supportFile: 'cypress/support/index.ts', // Path to support file
     specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx}', // Pattern for test files in the e2e folder
     video: false, // Disable video recording if you don't need it
-    screenshotsFolder: 'cypress/screenshots', // Path for screenshots
+    screenshotsFolder: 'cypress/reports', // Path for screenshots
     screenshotOnRunFailure: true,
     videosFolder: 'cypress/videos' // Path for videos
   },

@@ -5,21 +5,18 @@ interface Pet {
 
 describe("Home Page tests", () => {
 
-  beforeEach(function() {
+  before(function() {
     cy.fixture('api').as('api');
-  });
-
-  it('add new pet to store', function() {
-    const newPet:Pet = {
-      name: "------I am a test pet--------",
-      status: "available",
-    };
-    cy.addPetToStore(newPet).then((response) => {
-      expect(response.status).to.eq(200);
-      Cypress.env('addedPet',response.body);
-      console.log("RESPONSE BODY IS:",JSON.stringify(response.body));
-      expect(response.body).to.have.property('name', newPet.name)
-    });
+      const newPet:Pet = {
+        name: "------I am a test pet--------",
+        status: "available"
+      };
+      cy.addPetToStore(newPet).then((response) => {
+        expect(response.status).to.eq(200);
+        Cypress.env('addedPet',response.body);
+        console.log("RESPONSE BODY IS:",JSON.stringify(response.body));
+        expect(response.body).to.have.property('name', newPet.name)
+      });
   });
 
   it('get pets in store', function() {
