@@ -1,4 +1,3 @@
-// cypress.config.ts
 import { defineConfig } from 'cypress';
 
 export default defineConfig({
@@ -9,21 +8,22 @@ export default defineConfig({
     html: true,
     json: true,
     charts: true,
+    embeddedScreenshots: true,
   },
   viewportWidth: 1280,
   viewportHeight: 1280,
   e2e: {
-    setupNodeEvents(on,config){
+    setupNodeEvents(on, config) {
       require('cypress-mochawesome-reporter/plugin')(on);
       return config;
     },
     baseUrl: "https://swagger.io",
-    fixturesFolder: 'cypress/fixtures', // Path to fixtures folder
-    supportFile: 'cypress/support/index.ts', // Path to support file
-    specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx}', // Pattern for test files in the e2e folder
-    video: false, // Disable video recording if you don't need it
-    screenshotsFolder: 'cypress/reports', // Path for screenshots
+    fixturesFolder: 'cypress/fixtures',
+    supportFile: 'cypress/support/index.ts',
+    specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx}',
+    video: false,
+    screenshotsFolder: 'cypress/reports',
     screenshotOnRunFailure: true,
-    videosFolder: 'cypress/videos' // Path for videos
+    videosFolder: 'cypress/videos',
   },
 });

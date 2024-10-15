@@ -19,7 +19,7 @@ describe("Home Page tests", () => {
       });
   });
 
-  it('get pets in store', function() {
+  it.only('get pets in store', function() {
     const addedPet = Cypress.env('addedPet');
     expect(addedPet).to.not.to.be.null;
     cy.getPetsByStatus(['available']).then((response) => {
