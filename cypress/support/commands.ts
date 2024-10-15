@@ -1,6 +1,3 @@
-// cypress/support/commands.ts
-import { SignInPage } from "../pages/signInPage";
-
 let dynamicUrl: any;
 
 Cypress.Commands.add("loginViaUi", (email: string, password: string) => {
@@ -22,12 +19,6 @@ Cypress.Commands.add("loginViaUi", (email: string, password: string) => {
   );
 });
 
-Cypress.Commands.add('iGet', (apiUrl: string) => {
-  cy.request('GET', apiUrl).then((response) => {
-    return response;
-  });
-});
-
 Cypress.Commands.add('getPetsByStatus', (statuses: string[]) => {
   const apiUrl = `https://petstore.swagger.io/v2/pet/findByStatus?${statuses.map(status => `status=${status}`).join('&')}`;
     cy.request('GET', apiUrl).then((response) => {
@@ -44,21 +35,17 @@ Cypress.Commands.add('addPetToStore', (petData) => {
       'Content-Type': 'application/json'
     }
   }).then((response) => {
-    return response;  // Return the response for further use
+    return response;
   });
 });
+
+
 declare global {
   namespace Cypress {
     interface Chainable {
       addPetToStore(petData: { id?: number; name: string; status: string }): Chainable<Response<any>>;
       getPetsByStatus(status:string[]):Chainable<Response<any>>;
-      iGet(apiUrl: string): Chainable<Response<any>>;
       loginViaUi(email: string, password: string): Chainable<void>;
-      login(
-        stateValue: string,
-        email: string,
-        password: string
-      ): Chainable<void>;
     }
   }
 }
