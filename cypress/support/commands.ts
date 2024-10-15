@@ -1,5 +1,3 @@
-import { apiData } from "../fixtures/api.json"; 
-
 let dynamicUrl: any;
 
 Cypress.Commands.add("loginViaUi", (email: string, password: string) => {
