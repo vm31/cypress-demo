@@ -1,3 +1,5 @@
+import { apiData } from "../fixtures/api.json"; 
+
 let dynamicUrl: any;
 
 Cypress.Commands.add("loginViaUi", (email: string, password: string) => {
@@ -21,7 +23,7 @@ Cypress.Commands.add("loginViaUi", (email: string, password: string) => {
 
 Cypress.Commands.add('getPetsByStatus', (statuses: string[]) => {
   const apiUrl = `https://petstore.swagger.io/v2/pet/findByStatus?${statuses.map(status => `status=${status}`).join('&')}`;
-    cy.request('GET', apiUrl).then((response) => {
+  cy.request('GET', apiUrl).then((response) => {
     return response;
 });
 });
@@ -49,5 +51,6 @@ declare global {
     }
   }
 }
+
 
 export {};

@@ -1,6 +1,7 @@
 
 {
-    "devicesApi":{
+    "petStore":{
     "url": "https://virtserver.swaggerhub.com/playtestforme/test/1.0.0/devices"
   }
+ 
 }
