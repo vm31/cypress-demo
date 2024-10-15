@@ -26,4 +26,5 @@ export default defineConfig({
     screenshotOnRunFailure: true,
     videosFolder: 'cypress/videos',
   },
+  experimentalInteractiveRunEvents: true
 });

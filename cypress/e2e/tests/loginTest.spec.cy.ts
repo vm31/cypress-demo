@@ -1,7 +1,7 @@
 import { HomePageBeforeLogin } from "../../pages/homePageBeforeLogin";
 import { SignInPage } from "../../pages/signInPage";
 
-describe("Home Page tests", () => {
+describe("Swagger.io application front end test", () => {
   const homePageBeforeLogin = new HomePageBeforeLogin();
   const signInPage = new SignInPage();
 
@@ -19,7 +19,7 @@ describe("Home Page tests", () => {
     cy.loginViaUi(validUser,password);
     cy.origin('https://app.swaggerhub.com', { args: [validUser] }, ([validUser]) => {
     cy.location('pathname').should('include', '/home');
-    cy.get('#headlessui-menu-button-\\:rh\\:').should('not.be.visible').click();
+    cy.get('#headlessui-menu-button-\\:rh\\:').should('be.visible').click();
     cy.get('.gap-4 > .grid > div[role="none"]').contains(validUser);
     });
   });

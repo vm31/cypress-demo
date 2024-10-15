@@ -3,7 +3,7 @@ interface Pet {
   status: string;
 }
 
-describe("Home Page tests", () => {
+describe("Swagger Pet Store backend tests", () => {
 
   before(function() {
     cy.fixture('api').as('api');
