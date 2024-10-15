@@ -15,6 +15,6 @@ export const utilityFunctions = {
     },
     clickElementText:(text:string)=>{
         cy.contains(text).should('be.visible').click();
-    },
+    }
 
 }
