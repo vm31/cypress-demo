@@ -1,4 +1,4 @@
-describe('filter betweeen given email list',()=>{
+describe('filter betweeen given email list',() => {
     beforeEach(() => {
         cy.fixture('email.html').then((html) => {
             document.body.innerHTML = html;
