@@ -5,12 +5,14 @@ import { utilityFunctions } from "../../support/utils";
 describe("Home Page tests", () => {
 
   beforeEach(function() {
+    Cypress.config('baseUrl', 'https://swagger.io');
     cy.fixture('loginData').as('loginData');
     utilityFunctions.launch('/')
     utilityFunctions.checkUrlContains('/')
     utilityFunctions.isVisible(homePageBeforeLogin.signInBtn)
   });
 
+//swagger.io login successful
   it("sign in test", function() {
     const validUser = this.loginData.validUser.email;
     const password = this.loginData.validUser.password;
@@ -22,4 +24,5 @@ describe("Home Page tests", () => {
       cy.get('.gap-4 > .grid > div[role="none"]').contains(validUser);
     });
   });
+  
 });

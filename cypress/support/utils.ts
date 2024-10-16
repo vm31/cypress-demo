@@ -15,6 +15,12 @@ export const utilityFunctions = {
     },
     clickElementText:(text:string)=>{
         cy.contains(text).should('be.visible').click();
+    },
+    enterText:(selector: string, inputText:string) => {
+        cy.get(selector).should('be.visible').type(inputText);
+    },
+    getText:(selector:string) =>{
+        return cy.get(selector).invoke('text').then((text)=> text.trim());
     }
 
 }

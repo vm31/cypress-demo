@@ -1,10 +1,10 @@
 let dynamicUrl: any;
 
 Cypress.Commands.add("loginViaUi", (email: string, password: string) => {
-  cy.origin(
-    "https://auth.id.smartbear.com",
+  cy.origin("https://auth.id.smartbear.com",
     { args: { email,password } },
     ({ email,password }) => {
+      //retries current url of the page
       cy.url().then((url) => {
         dynamicUrl = url;
       });
@@ -12,6 +12,7 @@ Cypress.Commands.add("loginViaUi", (email: string, password: string) => {
       cy.get('#username').should('be.visible');
       cy.get("#username").type(email);
       cy.contains("Continue").click();
+      cy.url().should('contain','u/login/password');
      cy.contains('Continue logging in');
       cy.get("#password").should("be.visible").click().type(password);
       cy.get(".ca0df71c7 > .ccfd14389").click();

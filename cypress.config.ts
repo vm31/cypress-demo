@@ -17,7 +17,7 @@ export default defineConfig({
       require('cypress-mochawesome-reporter/plugin')(on);
       return config;
     },
-    baseUrl: "https://swagger.io",
+    baseUrl: process.env.BASE_URL,
     fixturesFolder: 'cypress/fixtures',
     supportFile: 'cypress/support/index.ts',
     specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx}',
