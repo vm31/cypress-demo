@@ -1,13 +1,16 @@
 import { utilityFunctions } from "../../support/utils";
-import { locators } from "../../support/locators";
 
 
 describe('test any applicaton', () => {
+  let locators: any;
 
     beforeEach(function(){
         Cypress.config('baseUrl', 'https://uwfactuuronline.athlon.com/login');
         utilityFunctions.launch('/');
         cy.fixture('loginData').as('loginData');
+        utilityFunctions.loadLocators().then((loadedLocators) => {
+          locators = loadedLocators;
+        });
     })
     it.only("check incorrect username and password error message text", function(){
         utilityFunctions.checkUrlContains('/login');

@@ -5,7 +5,8 @@ describe('filter betweeen given email list',() => {
         });
     });
 
-    it.only('test list of email address and apply filter',()=>{
+    it('verify list of email address have cgi emails',() => {
+        const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
         cy.visit('http://localhost:8080/email');
         cy.get('#email-list').should('exist');
         //parent element
@@ -14,8 +15,13 @@ describe('filter betweeen given email list',() => {
             const email :string  = $el.text();
             if(email.includes('cgi.com')){
                 cy.log(`found cgi email:',${email}`);
-                expect(email).to.include('cgi.com')
+                expect(email).to.include('cgi.com');
+                if(emailRegex.test(email)){
+                    cy.log(`vaild cgi email format,{$email}`)
+                } else {
+                    cy.log(`not valid cgi email format,{$email}`)
+                }
             }
         })
-    })
+    });
 })

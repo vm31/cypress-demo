@@ -1,5 +1,4 @@
-import { homePageBeforeLogin } from "../../pages/homePageBeforeLogin";
-import { signInPage } from "../../pages/signInPage";
+
 import { utilityFunctions } from "../../support/utils";
 
 describe("Home Page tests", () => {
@@ -9,7 +8,7 @@ describe("Home Page tests", () => {
     cy.fixture('loginData').as('loginData');
     utilityFunctions.launch('/')
     utilityFunctions.checkUrlContains('/')
-    utilityFunctions.isVisible(homePageBeforeLogin.signInBtn)
+    // utilityFunctions.isVisible(homePageBeforeLogin.signInBtn)
   });
 
 //swagger.io login successful

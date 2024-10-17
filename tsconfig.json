@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
+    "module": "commonjs",
     "target": "es6",
     "lib": ["es6", "dom"],
     "types": ["cypress"],
-    "module": "commonjs",
     "strict": true,
     "baseUrl": "https://example.cypress.io",
     "esModuleInterop": true,

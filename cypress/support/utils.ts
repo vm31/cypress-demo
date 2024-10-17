@@ -1,3 +1,5 @@
+import * as yaml from 'js-yaml';
+
 export const utilityFunctions = {
     launch:(url:string)=>{
         cy.visit(url)
@@ -21,6 +23,13 @@ export const utilityFunctions = {
     },
     getText:(selector:string) =>{
         return cy.get(selector).invoke('text').then((text)=> text.trim());
+    },
+    loadLocators:()=>{
+        return cy.readFile('cypress/fixtures/locators.yaml').then((fileConents)=>{
+            return yaml.load(fileConents);
+        })
+     
+
     }
 
 }
