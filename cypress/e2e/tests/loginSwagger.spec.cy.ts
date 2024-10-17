@@ -1,7 +1,7 @@
 
 import { utilityFunctions } from "../../support/utils";
 
-describe("Home Page tests", () => {
+describe("SwaggerIO Test Suite", () => {
 
   beforeEach(function() {
     Cypress.config('baseUrl', 'https://swagger.io');
