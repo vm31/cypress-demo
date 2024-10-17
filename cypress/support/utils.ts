@@ -1,4 +1,4 @@
-import * as yaml from 'js-yaml';
+import * as yaml from 'ts-yaml';
 
 export const utilityFunctions = {
     launch:(url:string)=>{
@@ -28,8 +28,6 @@ export const utilityFunctions = {
         return cy.readFile('cypress/fixtures/locators.yaml').then((fileConents)=>{
             return yaml.load(fileConents);
         })
-     
-
     }
 
 }

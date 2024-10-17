@@ -10,8 +10,9 @@ Commands.ts cypress cutom commonly commands that can be called "cy."
 utils.ts commonly used methods that has selectors and test data as method parameters 
 e2e.ts need this for mochawesome reporter integration
 index.ts file serves as the entry point for your support files, global event handler or test related initialization logic
+--------------
 mochawesome reporter is configured such that it generates reports as html file after run
-npm i --save-dev @types/js-yaml
+npm install ts-yaml
 npm i --save-dev @types
 ----------------
 sping http-server as below:

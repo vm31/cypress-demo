@@ -8,7 +8,6 @@ describe("SwaggerIO Test Suite", () => {
     cy.fixture('loginData').as('loginData');
     utilityFunctions.launch('/')
     utilityFunctions.checkUrlContains('/')
-    // utilityFunctions.isVisible(homePageBeforeLogin.signInBtn)
   });
 
 //swagger.io login successful
