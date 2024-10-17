@@ -6,7 +6,7 @@ describe('filter betweeen given email list',() => {
     });
 
     it('verify list of email address have cgi emails',() => {
-        const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+        const emailRegex:RegExp = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
         cy.visit('http://localhost:8080/email');
         cy.get('#email-list').should('exist');
         //parent element
