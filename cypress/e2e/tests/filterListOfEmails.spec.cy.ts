@@ -16,6 +16,7 @@ describe('filter betweeen given email list',() => {
             if(email.includes('cgi.com')){
                 cy.log(`found cgi email:',${email}`);
                 expect(email).to.include('cgi.com');
+                //test() will check if pattern exists in searched string
                 if(emailRegex.test(email)){
                     cy.log(`vaild cgi email format,{$email}`)
                 } else {
