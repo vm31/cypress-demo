@@ -11,5 +11,14 @@ utils.ts commonly used methods that has selectors and test data as method parame
 e2e.ts need this for mochawesome reporter integration
 index.ts file serves as the entry point for your support files, global event handler or test related initialization logic
 mochawesome reporter is configured such that it generates reports as html file after run
+npm i --save-dev @types/js-yaml
+npm i --save-dev @types
+----------------
+sping http-server as below:
+npm intall -g http-server
+npx http-server
+----------------
+
+
 
 
